@@ -1,38 +1,21 @@
+import { useState } from 'react'
+import Game from './components/game'
 import './styles/App.css'
 
 function App() {
+	const [score, setScore] = useState(0)
+
+	const handleScore = () => {
+		const newScore = score + 1
+		setScore(newScore)
+	}
 	return (
 		<>
 			<header className="header">
 				<h2 className="title">Memory Card Game</h2>
-				<p className="scoreboard">ScoreBoard: </p>
+				<p className="scoreboard">ScoreBoard: {score}</p>
 			</header>
-			<section className="container">
-				<div className="row">
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-				</div>
-				<div className="row">
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-				</div>
-				<div className="row">
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-					<div className="card"></div>
-				</div>
-			</section>
+			<Game handleScore={handleScore} />
 		</>
 	)
 }
