@@ -49,7 +49,6 @@ const Game = ({ handleScore }: { handleScore: () => void }) => {
 					(card: CardType) =>
 						card.img && card.cardSet !== 'Legacy' && card.rarity === 'Legendary'
 				)
-				console.log(filteredData)
 				setCards(filteredData.slice(0, 12))
 				setIsLoading(false)
 			} catch (error: unknown) {
