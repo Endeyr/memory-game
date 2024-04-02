@@ -65,6 +65,10 @@ const Game = ({ handleScore }: { handleScore: () => void }) => {
 	}, [])
 	// handle onClick, shuffles cards and adds to score or wrong answer
 
+	const handleClick = () => {
+		handleScore()
+	}
+
 	if (isLoading) {
 		return <p>Loading...</p>
 	}
@@ -80,8 +84,9 @@ const Game = ({ handleScore }: { handleScore: () => void }) => {
 				{cards &&
 					cards.map((card) => (
 						<div className="card" key={card.cardId}>
-							<button onClick={handleScore}>
+							<button onClick={handleClick}>
 								<img
+									draggable="false"
 									loading="lazy"
 									width="100%"
 									height="100%"
