@@ -7,11 +7,21 @@ type CardType = {
 	rarity: string
 }
 
-const Game = ({ handleScore }: { handleScore: () => void }) => {
+const Game = ({
+	score,
+	setScore,
+	setMessage,
+}: {
+	score: number
+	setScore: React.Dispatch<React.SetStateAction<number>>
+	setMessage: React.Dispatch<React.SetStateAction<string>>
+}) => {
 	// initial cards array
 	const [cards, setCards] = useState<CardType[]>([])
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState<Error | null>(null)
+	const [clickedCards, setClickedCards] = useState<string[]>([])
+
 	// use effect for the fetch + callback function if fetch cancelled
 	useEffect(() => {
 		let isMounted = true
@@ -63,10 +73,29 @@ const Game = ({ handleScore }: { handleScore: () => void }) => {
 			isMounted = false // mark component as unmounted
 		}
 	}, [])
-	// handle onClick, shuffles cards and adds to score or wrong answer
 
-	const handleClick = () => {
-		handleScore()
+	const handleScore = () => {
+		const newScore = score + 1
+		setScore(newScore)
+	}
+
+	// shuffles cards and adds to score or wrong answer
+	const handleClick = (cardId: string) => {
+		// check if card exist in clickedCard array
+		if (clickedCards.includes(cardId)) {
+			setScore(0)
+			setClickedCards([])
+			setMessage('You lose!')
+		} else {
+			setClickedCards((prevState) => [...prevState, cardId])
+			handleScore()
+			const shuffledArray = cards.sort(() => 0.5 - Math.random())
+			setCards(shuffledArray)
+		}
+	}
+
+	if (score === 1) {
+		setMessage('')
 	}
 
 	if (isLoading) {
@@ -84,7 +113,7 @@ const Game = ({ handleScore }: { handleScore: () => void }) => {
 				{cards &&
 					cards.map((card) => (
 						<div className="card" key={card.cardId}>
-							<button onClick={handleClick}>
+							<button onClick={() => handleClick(card.cardId)}>
 								<img
 									draggable="false"
 									loading="lazy"

@@ -4,18 +4,22 @@ import './styles/App.css'
 
 function App() {
 	const [score, setScore] = useState(0)
+	const [message, setMessage] = useState('start game')
+	const [startGame, setStartGame] = useState(false)
 
-	const handleScore = () => {
-		const newScore = score + 1
-		setScore(newScore)
-	}
 	return (
 		<>
 			<header className="header">
 				<h2 className="title">Memory Card Game</h2>
+				{message && <p className="message">{message}</p>}
 				<p className="scoreboard">ScoreBoard: {score}</p>
 			</header>
-			<Game handleScore={handleScore} />
+			{!startGame && (
+				<button onClick={() => setStartGame(true)}>Start Game</button>
+			)}
+			{startGame && (
+				<Game score={score} setScore={setScore} setMessage={setMessage} />
+			)}
 		</>
 	)
 }
