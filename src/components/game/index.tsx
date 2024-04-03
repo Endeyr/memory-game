@@ -87,9 +87,6 @@ const Game = ({
 	const handleClick = (cardId: string) => {
 		// check if card exist in clickedCard array
 		if (clickedCards.includes(cardId)) {
-			if (score === 1) {
-				setMessage('')
-			}
 			if (score > bestScore) {
 				setBestScore(score)
 			}
@@ -101,6 +98,7 @@ const Game = ({
 			setScore(0)
 			setClickedCards([])
 		} else {
+			setMessage('')
 			setClickedCards((prevState) => [...prevState, cardId])
 			handleScore()
 			const shuffledArray = cards.sort(() => 0.5 - Math.random())
