@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import murloc from './assets/Anyfin_Can_Happen.webp'
 import Game from './components/game'
 import './styles/App.css'
 
@@ -21,6 +22,15 @@ function App() {
 					<button className="start-button" onClick={() => setStartGame(true)}>
 						Start Game
 					</button>
+					<img
+						className="murloc"
+						draggable="false"
+						loading="lazy"
+						width="250px"
+						height="250px"
+						src={murloc}
+						alt="murlocs"
+					/>
 					<h2 className="rules">Rules</h2>
 					<p className="rules-paragraph">
 						Click each murloc only once. Try to click them all without

@@ -152,10 +152,8 @@
 	.row {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-		grid-column-gap: 12px;
-		grid-row-gap: 12px;
-		justify-items: stretch;
-		align-items: stretch;
+		grid-column-gap: 8px;
+		grid-row-gap: 6px;
 	}
 	.card {
 		min-width: 100px;
@@ -174,5 +172,43 @@
 	.message {
 		font-size: large;
 		color: red;
+	}
+	.loading {
+		font-size: xx-large;
+		font-weight: bolder;
+	}
+	.error {
+		color: red;
+		font-size: x-large;
+	}
+	.start {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 80dvh;
+		gap: 2rem;
+	}
+	.start-button {
+		background-color: #f5deb3; /* Wheat */
+		border: none;
+		color: black;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.rules {
+		font-size: x-large;
+	}
+	.rules-paragraph {
+		font-size: larger;
+	}
+	.murloc {
+		min-width: 250px;
+		min-height: 250px;
+		border-radius: 50%;
 	}
 }

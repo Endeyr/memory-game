@@ -87,6 +87,9 @@ const Game = ({
 	const handleClick = (cardId: string) => {
 		// check if card exist in clickedCard array
 		if (clickedCards.includes(cardId)) {
+			if (score === 1) {
+				setMessage('')
+			}
 			if (score > bestScore) {
 				setBestScore(score)
 			}
@@ -105,16 +108,12 @@ const Game = ({
 		}
 	}
 
-	if (score === 1) {
-		setMessage('')
-	}
-
 	if (isLoading) {
-		return <p>Loading...</p>
+		return <p className="loading">Loading...</p>
 	}
 
 	if (error) {
-		return <p>{error.stack}</p>
+		return <p className="error">{error.stack}</p>
 	}
 
 	return (
