@@ -11,10 +11,14 @@ const Game = ({
 	score,
 	setScore,
 	setMessage,
+	bestScore,
+	setBestScore,
 }: {
 	score: number
 	setScore: React.Dispatch<React.SetStateAction<number>>
 	setMessage: React.Dispatch<React.SetStateAction<string>>
+	bestScore: number
+	setBestScore: React.Dispatch<React.SetStateAction<number>>
 }) => {
 	// initial cards array
 	const [cards, setCards] = useState<CardType[]>([])
@@ -83,9 +87,16 @@ const Game = ({
 	const handleClick = (cardId: string) => {
 		// check if card exist in clickedCard array
 		if (clickedCards.includes(cardId)) {
+			if (score > bestScore) {
+				setBestScore(score)
+			}
+			if (score === 12) {
+				setMessage('You Win!!!!!')
+			} else {
+				setMessage('You Lose :(')
+			}
 			setScore(0)
 			setClickedCards([])
-			setMessage('You lose!')
 		} else {
 			setClickedCards((prevState) => [...prevState, cardId])
 			handleScore()
