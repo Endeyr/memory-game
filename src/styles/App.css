@@ -158,8 +158,6 @@
 		align-items: stretch;
 	}
 	.card {
-		border: 2px solid red;
-		border-radius: 5px;
 		min-width: 100px;
 		min-height: 200px;
 	}
@@ -172,5 +170,9 @@
 	}
 	.scoreboard {
 		font-size: large;
+	}
+	.message {
+		font-size: large;
+		color: red;
 	}
 }
